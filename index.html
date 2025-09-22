@@ -674,6 +674,56 @@
         font-size: 0.95em;
       }
     }
+
+    /* --- Mobile hero section improvements --- */
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        min-height: unset;
+        padding: 0;
+        background: #eee;
+      }
+      .hero-text {
+        padding: 24px 8vw 16px 8vw;
+        text-align: center;
+        align-items: center;
+      }
+      .hero-text h1 {
+        font-size: 2em;
+        margin-bottom: 14px;
+      }
+      .hero-text p {
+        font-size: 1em;
+      }
+      .hero-image {
+        min-height: 180px;
+        height: 38vw;
+        max-height: 220px;
+        border-radius: 12px;
+        margin: 0 8vw 24px 8vw;
+        width: auto;
+        background-position: center 60%;
+      }
+    }
+    @media (max-width: 600px) {
+      .hero-text {
+        padding: 16px 4vw 10px 4vw;
+      }
+      .hero-text h1 {
+        font-size: 1.25em;
+        margin-bottom: 10px;
+      }
+      .hero-text p {
+        font-size: 0.97em;
+      }
+      .hero-image {
+        min-height: 110px;
+        height: 32vw;
+        max-height: 140px;
+        border-radius: 8px;
+        margin: 0 4vw 16px 4vw;
+      }
+    }
   </style>
 </head>
 <body>
