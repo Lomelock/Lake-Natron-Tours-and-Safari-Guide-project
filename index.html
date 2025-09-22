@@ -256,8 +256,9 @@
       header nav {
         display: none;
       }
-      .banner-slider {
-        display: none;
+      .banner-slider,
+      .accommodation-banner {
+        display: none !important;
       }
     }
 
@@ -507,6 +508,10 @@
       }
     }
     @media (max-width: 900px) {
+      .banner-slider,
+      .accommodation-banner {
+        display: none !important;
+      }
       .banner-slider .slide {
         width: 100%;
         height: 38vw;
@@ -533,12 +538,6 @@
       .banner-slider .controls {
         bottom: 10px;
       }
-      .accommodation-banner {
-        max-width: 98vw;
-        margin-left: 1vw;
-        margin-right: 1vw;
-        border-radius: 0 0 14px 14px;
-      }
     }
     @media (max-width: 600px) {
       .banner-slider .slide {
@@ -557,12 +556,6 @@
       }
       .banner-slider .lead {
         font-size: 0.95em;
-      }
-      .accommodation-banner {
-        max-width: 99vw;
-        margin-left: 0.5vw;
-        margin-right: 0.5vw;
-        border-radius: 0 0 10px 10px;
       }
     }
 
