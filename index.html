@@ -248,6 +248,15 @@
     .hamburger.active span:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
     }
+    /* Show hamburger and hide nav on mobile */
+    @media (max-width: 900px) {
+      .hamburger {
+        display: flex;
+      }
+      header nav {
+        display: none;
+      }
+    }
 
     /* Mobile nav overlay */
     .mobile-nav-overlay {
