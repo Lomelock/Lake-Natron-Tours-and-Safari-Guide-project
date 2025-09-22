@@ -298,18 +298,347 @@
       font-size: 1.07em;
     }
 
-    @media (max-width: 900px) {
-      header nav {
-        display: none;
+    /* Banner Slider Styles */
+    .banner-slider {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      overflow: hidden;
+      min-height: 160px;
+      background: #0c3b2e;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+      border-radius: 0 0 24px 24px;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .banner-slider .slides {
+      display: flex;
+      transition: transform 0.7s cubic-bezier(.77,0,.18,1);
+      will-change: transform;
+      width: calc(100vw * 3);
+      max-width: 100%;
+    }
+    .banner-slider .slide {
+      width: 100%;
+      height: 28vw;
+      min-height: 160px;
+      max-height: 320px;
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .banner-slider .bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.7) saturate(1.1) contrast(1.05);
+      z-index: 1;
+      transition: filter 0.4s;
+    }
+    .banner-slider .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg,rgba(12,59,46,0.7) 0%,rgba(12,59,46,0.2) 80%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .banner-slider .content {
+      position: relative;
+      z-index: 3;
+      color: #fff;
+      max-width: 540px;
+      margin: auto 0 auto 8vw;
+      padding: 32px 32px 32px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 320px;
+    }
+    .banner-slider .eyebrow {
+      font-size: 1.05em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #FFA94D;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .banner-slider h2 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.1em;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      line-height: 1.15;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+    .banner-slider .lead {
+      font-family: 'Roboto', Arial, sans-serif;
+      font-size: 1.13em;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: #f3e9e0;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    }
+    .banner-slider .cta {
+      display: inline-block;
+      background: linear-gradient(90deg,#FF6B35,#FFA94D);
+      color: #0c3b2e;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.07em;
+      padding: 11px 28px;
+      border-radius: 24px;
+      text-decoration: none;
+      box-shadow: 0 2px 12px rgba(255,107,53,0.10);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+    .banner-slider .cta:hover,
+    .banner-slider .cta:focus {
+      background: linear-gradient(90deg,#FFA94D,#FF6B35);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(255,169,77,0.18);
+    }
+
+    /* Arrows */
+    .banner-slider .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(12,59,46,0.7);
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFA94D;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+    .banner-slider .arrow.left { left: 18px; }
+    .banner-slider .arrow.right { right: 18px; }
+    .banner-slider .arrow:hover,
+    .banner-slider .arrow:focus {
+      background: #FFA94D;
+      color: #0c3b2e;
+    }
+    .banner-slider .arrow svg {
+      width: 26px;
+      height: 26px;
+      display: block;
+    }
+
+    /* Dots/controls */
+    .banner-slider .controls {
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 12;
+    }
+    .banner-slider .dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      border: 2px solid #FFA94D;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      outline: none;
+      border-width: 2px;
+      border-style: solid;
+    }
+    .banner-slider .dot.active,
+    .banner-slider .dot:focus {
+      background: #FFA94D;
+      border-color: #fff;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .banner-slider {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 0 0 18px 18px;
       }
-      .hamburger {
-        display: flex;
+      .banner-slider .slide {
+        height: 46vw;
+        max-height: 380px;
       }
     }
-    @media (min-width: 901px) {
-      .mobile-nav,
-      .mobile-nav-overlay {
-        display: none !important;
+    @media (max-width: 900px) {
+      .banner-slider .slide {
+        width: 100%;
+        height: 38vw;
+        min-height: 110px;
+        max-height: 180px;
+      }
+      .banner-slider .content {
+        margin: 0 0 0 4vw;
+        padding: 18px 12px 18px 0;
+        min-height: 120px;
+      }
+      .banner-slider h2 {
+        font-size: 1.25em;
+      }
+      .banner-slider .lead {
+        font-size: 1em;
+      }
+      .banner-slider .arrow {
+        width: 36px;
+        height: 36px;
+        left: 8px;
+        right: 8px;
+      }
+      .banner-slider .controls {
+        bottom: 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      .banner-slider .slide {
+        width: 100%;
+        height: 48vw;
+        min-height: 70px;
+        max-height: 120px;
+      }
+      .banner-slider .content {
+        margin: 0 0 0 2vw;
+        padding: 10px 6px 10px 0;
+        min-height: 60px;
+      }
+      .banner-slider h2 {
+        font-size: 1em;
+      }
+      .banner-slider .lead {
+        font-size: 0.95em;
+      }
+    }
+
+    /* New Accommodation Banner styles */
+    .accommodation-banner {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      overflow: hidden;
+      min-height: 140px;
+      background: #1a3a2d;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .accommodation-banner-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.6) saturate(1.1);
+      z-index: 1;
+    }
+    .accommodation-banner-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg,rgba(26,58,45,0.85) 0%,rgba(26,58,45,0.3) 80%);
+      z-index: 2;
+    }
+    .accommodation-banner-content {
+      position: relative;
+      z-index: 3;
+      color: #fff;
+      max-width: 600px;
+      margin: 0 0 0 8vw;
+      padding: 32px 32px 32px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 140px;
+    }
+    .accommodation-eyebrow {
+      font-size: 1em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #FFA94D;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .accommodation-title {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2em;
+      font-weight: 700;
+      margin: 0 0 10px 0;
+      line-height: 1.15;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+    .accommodation-lead {
+      font-family: 'Roboto', Arial, sans-serif;
+      font-size: 1.1em;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: #f3e9e0;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    }
+    .accommodation-cta {
+      display: inline-block;
+      background: linear-gradient(90deg,#FFA94D,#FF6B35);
+      color: #1a3a2d;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.07em;
+      padding: 11px 28px;
+      border-radius: 24px;
+      text-decoration: none;
+      box-shadow: 0 2px 12px rgba(255,169,77,0.10);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+    .accommodation-cta:hover,
+    .accommodation-cta:focus {
+      background: linear-gradient(90deg,#FF6B35,#FFA94D);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(255,107,53,0.18);
+    }
+    @media (max-width: 900px) {
+      .accommodation-banner-content {
+        margin: 0 0 0 4vw;
+        padding: 18px 12px 18px 0;
+        min-height: 90px;
+      }
+      .accommodation-title {
+        font-size: 1.2em;
+      }
+      .accommodation-lead {
+        font-size: 1em;
+      }
+    }
+    @media (max-width: 600px) {
+      .accommodation-banner-content {
+        margin: 0 0 0 2vw;
+        padding: 10px 6px 10px 0;
+        min-height: 50px;
+      }
+      .accommodation-title {
+        font-size: 1em;
+      }
+      .accommodation-lead {
+        font-size: 0.95em;
       }
     }
   </style>
@@ -353,6 +682,34 @@
     <a href="#culture">Culture</a>
     <a href="#contact">Contact</a>
   </div>
+
+  <!-- Banner (static, no slider) -->
+  <section class="banner-slider" aria-label="Promotional banner">
+    <div class="slide" style="width:100%; height:auto; position:relative;">
+      <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop');"></div>
+      <div class="overlay" aria-hidden="true"></div>
+      <div class="content">
+        <div class="eyebrow">Discover</div>
+        <h2>Explore the wild — Lake Natron adventures</h2>
+        <p class="lead">Unique landscapes, flamingo shores and Maasai culture — join our guided tours to experience it all.</p>
+        <a class="cta" href="#">Book a tour</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Accommodation Banner -->
+  <section class="accommodation-banner" aria-label="Accommodation promotion">
+    <div class="accommodation-banner-bg"></div>
+    <div class="accommodation-banner-overlay"></div>
+    <div class="accommodation-banner-content">
+      <div class="accommodation-eyebrow">Stay With Us</div>
+      <h2 class="accommodation-title">Relax in Comfort at Lake Natron</h2>
+      <p class="accommodation-lead">
+        Enjoy stunning views, modern amenities, and authentic hospitality. Our handpicked lodges and camps offer the perfect base for your safari adventure.
+      </p>
+      <a class="accommodation-cta" href="accommodation.html">View Accommodation Options</a>
+    </div>
+  </section>
 
   <!-- Hero Section -->
   <section class="hero" id="home">
@@ -402,173 +759,157 @@
   </section>
 
   <!-- Wildlife Section -->
-  <!-- Wildlife Section -->
-<section id="wildlife" style="padding:60px 20px; background:#f0f0f0;">
-  <h2 style="text-align:center; margin-bottom:20px;">Wildlife at Lake Natron</h2>
-  <p style="max-width:900px; margin:0 auto 40px auto; text-align:center; line-height:1.6;">
-    Lake Natron and its surrounding savannahs host a variety of fascinating herbivorous wildlife. Visitors can observe giraffes, gazelles, wildebeests, and baboons in their natural habitats. Predators are present but rare, making herbivore encounters the highlight of your safari.
-  </p>
+  <section id="wildlife" style="padding:60px 20px; background:#f0f0f0;">
+    <h2 style="text-align:center; margin-bottom:20px;">Wildlife at Lake Natron</h2>
+    <p style="max-width:900px; margin:0 auto 40px auto; text-align:center; line-height:1.6;">
+      Lake Natron and its surrounding savannahs host a variety of fascinating herbivorous wildlife. Visitors can observe giraffes, gazelles, wildebeests, and baboons in their natural habitats. Predators are present but rare, making herbivore encounters the highlight of your safari.
+    </p>
 
-  <div class="grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;">
-    
-    <!-- Giraffes -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1529429617124-29d6db1c4c2c" alt="Giraffes" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Giraffes</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Giraffes are the tallest land animals, easily recognized by their long necks and distinctive spotted coats. Around Lake Natron, they graze acacia trees and shrubs, often moving in small family groups. They are herbivores that feed mainly during the cooler hours of the day, providing great photographic opportunities.
-      </p>
+    <div class="grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;">
+      
+      <!-- Giraffes -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1529429617124-29d6db1c4c2c" alt="Giraffes" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Giraffes</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Giraffes are the tallest land animals, easily recognized by their long necks and distinctive spotted coats. Around Lake Natron, they graze acacia trees and shrubs, often moving in small family groups. They are herbivores that feed mainly during the cooler hours of the day, providing great photographic opportunities.
+        </p>
+      </div>
+
+      <!-- Gazelles -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1563006976-96f21f6cf6f2" alt="Gazelles" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Gazelles</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Gazelles are swift, graceful antelopes that thrive on open grasslands. At Lake Natron, you can spot Thomson’s gazelles and Grant’s gazelles grazing in herds. They are alert and quick to flee from threats, making early morning or late afternoon the best time for viewing.
+        </p>
+      </div>
+
+      <!-- Wildebeests -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1532206003487-6223d9f89e11" alt="Wildebeests" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Wildebeests</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Wildebeests are large herbivores known for their migratory patterns across East African plains. Around Lake Natron, they form seasonal herds moving in search of fresh grazing. Their distinctive curved horns and muscular bodies make them easy to identify, and they often share grazing areas with zebras and gazelles.
+        </p>
+      </div>
+
+      <!-- Baboons -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1552410260-5e05d69d33a2" alt="Baboons" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Baboons</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Baboons are highly social primates often seen in troops near Lake Natron. They forage for fruits, roots, and small insects and display fascinating social behaviors, including grooming and vocal communication. Their agility and playful nature make them a delight to observe for wildlife enthusiasts.
+        </p>
+      </div>
+      
     </div>
 
-    <!-- Gazelles -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1563006976-96f21f6cf6f2" alt="Gazelles" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Gazelles</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Gazelles are swift, graceful antelopes that thrive on open grasslands. At Lake Natron, you can spot Thomson’s gazelles and Grant’s gazelles grazing in herds. They are alert and quick to flee from threats, making early morning or late afternoon the best time for viewing.
-      </p>
-    </div>
-
-    <!-- Wildebeests -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1532206003487-6223d9f89e11" alt="Wildebeests" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Wildebeests</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Wildebeests are large herbivores known for their migratory patterns across East African plains. Around Lake Natron, they form seasonal herds moving in search of fresh grazing. Their distinctive curved horns and muscular bodies make them easy to identify, and they often share grazing areas with zebras and gazelles.
-      </p>
-    </div>
-
-    <!-- Baboons -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1552410260-5e05d69d33a2" alt="Baboons" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Baboons</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Baboons are highly social primates often seen in troops near Lake Natron. They forage for fruits, roots, and small insects and display fascinating social behaviors, including grooming and vocal communication. Their agility and playful nature make them a delight to observe for wildlife enthusiasts.
-      </p>
-    </div>
-    
-  </div>
-
-  <p style="max-width:900px; margin:40px auto 0 auto; text-align:center; font-style:italic; color:#555;">
-    Note: Predators such as lions, leopards, and cheetahs are present in the ecosystem but rarely encountered, adding a sense of wild unpredictability to your safari experience.
-  </p>
-</section>
+    <p style="max-width:900px; margin:40px auto 0 auto; text-align:center; font-style:italic; color:#555;">
+      Note: Predators such as lions, leopards, and cheetahs are present in the ecosystem but rarely encountered, adding a sense of wild unpredictability to your safari experience.
+    </p>
+  </section>
 
   <!-- Birdlife Section -->
- <!-- Birdlife Section -->
-<section id="birdlife" style="padding:60px 20px; background:#fff;">
-  <h2 style="text-align:center; margin-bottom:20px;">Birdlife at Lake Natron</h2>
-  <p style="max-width:900px; margin:0 auto 40px auto; text-align:center; line-height:1.6;">
-    Lake Natron is a globally important habitat for millions of birds, particularly flamingos. The alkaline waters provide ideal breeding grounds, while surrounding wetlands and woodlands support pelicans, storks, herons, and a variety of smaller bird species. Birdwatching at Lake Natron is an unforgettable experience for enthusiasts and photographers alike.
-  </p>
+  <section id="birdlife" style="padding:60px 20px; background:#fff;">
+    <h2 style="text-align:center; margin-bottom:20px;">Birdlife at Lake Natron</h2>
+    <p style="max-width:900px; margin:0 auto 40px auto; text-align:center; line-height:1.6;">
+      Lake Natron is a globally important habitat for millions of birds, particularly flamingos. The alkaline waters provide ideal breeding grounds, while surrounding wetlands and woodlands support pelicans, storks, herons, and a variety of smaller bird species. Birdwatching at Lake Natron is an unforgettable experience for enthusiasts and photographers alike.
+    </p>
 
-  <div class="grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;">
-    
-    <!-- Flamingos -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba" alt="Flamingos" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Flamingos</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Lake Natron hosts the largest breeding colony of Lesser Flamingos in the world. These vibrant pink birds feed on algae in the alkaline waters and perform synchronized group displays during the breeding season. The spectacle of thousands of flamingos wading across the lake is one of Africa’s most iconic sights.
-      </p>
+    <div class="grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;">
+      <!-- Flamingos -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba" alt="Flamingos" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Flamingos</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Lake Natron hosts the largest breeding colony of Lesser Flamingos in the world. These vibrant pink birds feed on algae in the alkaline waters and perform synchronized group displays during the breeding season. The spectacle of thousands of flamingos wading across the lake is one of Africa’s most iconic sights.
+        </p>
+      </div>
+      <!-- Pelicans -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1525011268546-bf5f7b6f5b7f" alt="Pelicans" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Pelicans</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Great White Pelicans are commonly seen gliding above the lake or swimming in groups. They feed on fish and cooperate in groups to herd schools of fish toward shallow waters. Their large wingspan and elegant flight make them a delight for photographers and nature lovers.
+        </p>
+      </div>
+      <!-- Storks -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1508610048659-a06a87c9a0f6" alt="Storks" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Storks</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Marabou and other stork species frequent the wetlands around Lake Natron. Recognizable by their large size and long legs, they often feed along the shoreline and in nearby grasslands. Their scavenging habits play an important ecological role in maintaining the health of the ecosystem.
+        </p>
+      </div>
+      <!-- Herons -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1551884170-09fb70a3a2d7" alt="Herons" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Herons</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Grey and Purple Herons are commonly spotted along the lake’s shores and shallow waters. They patiently hunt fish, frogs, and small invertebrates with their sharp bills. Their solitary and elegant hunting style makes them a favorite subject for birdwatchers and photographers.
+        </p>
+      </div>
     </div>
 
-    <!-- Pelicans -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1525011268546-bf5f7b6f5b7f" alt="Pelicans" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Pelicans</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Great White Pelicans are commonly seen gliding above the lake or swimming in groups. They feed on fish and cooperate in groups to herd schools of fish toward shallow waters. Their large wingspan and elegant flight make them a delight for photographers and nature lovers.
-      </p>
-    </div>
-
-    <!-- Storks -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1508610048659-a06a87c9a0f6" alt="Storks" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Storks</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Marabou and other stork species frequent the wetlands around Lake Natron. Recognizable by their large size and long legs, they often feed along the shoreline and in nearby grasslands. Their scavenging habits play an important ecological role in maintaining the health of the ecosystem.
-      </p>
-    </div>
-
-    <!-- Herons -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1551884170-09fb70a3a2d7" alt="Herons" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Herons</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Grey and Purple Herons are commonly spotted along the lake’s shores and shallow waters. They patiently hunt fish, frogs, and small invertebrates with their sharp bills. Their solitary and elegant hunting style makes them a favorite subject for birdwatchers and photographers.
-      </p>
-    </div>
-
-    <!-- Other Birds -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1543872084-c7bd3822856f" alt="Other Birds" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Other Birds</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Lake Natron supports a diverse bird population including avocets, plovers, and kingfishers. These species thrive in wetlands and along the lake’s shores, offering unique observation opportunities for wildlife enthusiasts and photographers seeking lesser-known species.
-      </p>
-    </div>
-
-  </div>
-
-  <p style="max-width:900px; margin:40px auto 0 auto; text-align:center; font-style:italic; color:#555;">
-    Note: Bird populations fluctuate seasonally, so the best time for flamingo breeding displays is from June to September.
-  </p>
-</section>
+    <p style="max-width:900px; margin:40px auto 0 auto; text-align:center; font-style:italic; color:#555;">
+      Note: Bird populations fluctuate seasonally, so the best time for flamingo breeding displays is from June to September.
+    </p>
+  </section>
 
 
   <!-- Culture Section -->
-  <!-- Culture Section -->
-<section id="culture" style="padding:60px 20px; background:#f9f9f9;">
-  <h2 style="text-align:center; margin-bottom:20px;">Culture at Lake Natron</h2>
-  <p style="max-width:900px; margin:0 auto 40px auto; text-align:center; line-height:1.6;">
-    The Maasai people have lived around Lake Natron for generations, maintaining rich cultural traditions that blend with the stunning natural environment. Visitors can experience authentic Maasai life through village visits, traditional dances, handicrafts, and storytelling, all conducted respectfully with certified local guides.
-  </p>
+  <section id="culture" style="padding:60px 20px; background:#f9f9f9;">
+    <h2 style="text-align:center; margin-bottom:20px;">Culture at Lake Natron</h2>
+    <p style="max-width:900px; margin:0 auto 40px auto; text-align:center; line-height:1.6;">
+      The Maasai people have lived around Lake Natron for generations, maintaining rich cultural traditions that blend with the stunning natural environment. Visitors can experience authentic Maasai life through village visits, traditional dances, handicrafts, and storytelling, all conducted respectfully with certified local guides.
+    </p>
 
-  <div class="grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;">
+    <div class="grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;">
 
-    <!-- Maasai Villages -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Maasai Village" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Maasai Villages</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Visit traditional Maasai villages to observe daily life, including homestead structures, livestock management, and local farming practices. Learn how the Maasai sustain their communities while preserving their cultural heritage.
-      </p>
+      <!-- Maasai Villages -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Maasai Village" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Maasai Villages</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Visit traditional Maasai villages to observe daily life, including homestead structures, livestock management, and local farming practices. Learn how the Maasai sustain their communities while preserving their cultural heritage.
+        </p>
+      </div>
+
+      <!-- Maasai Traditional Attire & Jewelry -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1501706362039-c6e8096a0f90" alt="Maasai Attire" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Traditional Attire & Jewelry</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Discover the vibrant Maasai shukas (cloth wraps) and intricate beadwork worn by both men and women. Learn the symbolism behind the colors and patterns, which convey identity, social status, and age group within the community.
+        </p>
+      </div>
+
+      <!-- Maasai Dances -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1525011268546-bf5f7b6f5b7f" alt="Maasai Dance" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Traditional Dances</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Experience Maasai jumping dances and other ceremonial performances, which showcase strength, rhythm, and community participation. These dances are often performed during celebrations and provide insight into Maasai customs and social life.
+        </p>
+      </div>
+
+      <!-- Cultural Workshops -->
+      <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+        <img src="https://images.unsplash.com/photo-1532206003487-6223d9f89e11" alt="Cultural Workshops" style="width:100%; height:180px; object-fit:cover;">
+        <h3 style="margin:10px;">Cultural Workshops</h3>
+        <p style="margin:10px; font-size:0.95em;">
+          Participate in hands-on workshops led by Maasai artisans, including beadwork, cooking traditional meals, and storytelling. These interactive experiences provide meaningful engagement while supporting local crafts and education.
+        </p>
+      </div>
+
     </div>
 
-    <!-- Maasai Traditional Attire & Jewelry -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1501706362039-c6e8096a0f90" alt="Maasai Attire" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Traditional Attire & Jewelry</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Discover the vibrant Maasai shukas (cloth wraps) and intricate beadwork worn by both men and women. Learn the symbolism behind the colors and patterns, which convey identity, social status, and age group within the community.
-      </p>
-    </div>
+    <p style="max-width:900px; margin:40px auto 0 auto; text-align:center; font-style:italic; color:#555;">
+      All cultural visits are conducted respectfully with certified guides to ensure an authentic and responsible experience for visitors while benefiting the Maasai community.
+    </p>
+  </section>
 
-    <!-- Maasai Dances -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1525011268546-bf5f7b6f5b7f" alt="Maasai Dance" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Traditional Dances</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Experience Maasai jumping dances and other ceremonial performances, which showcase strength, rhythm, and community participation. These dances are often performed during celebrations and provide insight into Maasai customs and social life.
-      </p>
-    </div>
-
-    <!-- Cultural Workshops -->
-    <div class="card" style="background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-      <img src="https://images.unsplash.com/photo-1532206003487-6223d9f89e11" alt="Cultural Workshops" style="width:100%; height:180px; object-fit:cover;">
-      <h3 style="margin:10px;">Cultural Workshops</h3>
-      <p style="margin:10px; font-size:0.95em;">
-        Participate in hands-on workshops led by Maasai artisans, including beadwork, cooking traditional meals, and storytelling. These interactive experiences provide meaningful engagement while supporting local crafts and education.
-      </p>
-    </div>
-
-  </div>
-
-  <p style="max-width:900px; margin:40px auto 0 auto; text-align:center; font-style:italic; color:#555;">
-    All cultural visits are conducted respectfully with certified guides to ensure an authentic and responsible experience for visitors while benefiting the Maasai community.
-  </p>
-</section>
   <!-- Contact Section -->
   <section id="contact">
     <h2 style="text-align:center;">Contact Us</h2>
@@ -582,62 +923,64 @@
     <div class="whatsapp-button">
       <a href="https://wa.me/255700000000" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
     </div>
-  </section><!-- Footer Section -->
-<footer style="background:#0f1724; color:#e8eef2; padding:40px 20px; margin-top:60px;">
-  <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px;">
+  </section>
 
-    <!-- About -->
-    <div>
-      <h3 style="margin-bottom:12px; color:#FFA94D;">About Lake Natron Safari</h3>
-      <p style="font-size:0.95em; line-height:1.5; color:#9aa7b2;">
-        Explore the unique landscapes, wildlife, and Maasai culture around Lake Natron with certified guides. Experience unforgettable safaris, responsible tourism, and community engagement.
-      </p>
-    </div>
+  <!-- Footer Section -->
+  <footer style="background:#0f1724; color:#e8eef2; padding:40px 20px; margin-top:60px;">
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:30px;">
 
-    <!-- Quick Links -->
-    <div>
-      <h3 style="margin-bottom:12px; color:#FFA94D;">Quick Links</h3>
-      <ul style="list-style:none; padding:0; font-size:0.95em; color:#9aa7b2;">
-        <li><a href="#wildlife" style="color:#9aa7b2; text-decoration:none;">Wildlife</a></li>
-        <li><a href="#birdlife" style="color:#9aa7b2; text-decoration:none;">Birdlife</a></li>
-        <li><a href="#culture" style="color:#9aa7b2; text-decoration:none;">Culture</a></li>
-        <li><a href="#contact" style="color:#9aa7b2; text-decoration:none;">Booking</a></li>
-      </ul>
-    </div>
-
-    <!-- Contact & WhatsApp -->
-    <div>
-      <h3 style="margin-bottom:12px; color:#FFA94D;">Contact</h3>
-      <p style="font-size:0.95em; color:#9aa7b2;">
-        WhatsApp: <a href="https://wa.me/255XXXXXXXXX" target="_blank" style="color:#FFA94D; text-decoration:none;">+255 XXXXXXXX</a><br>
-        Email: <a href="mailto:info@lakenatronsafari.com" style="color:#FFA94D; text-decoration:none;">info@lakenatronsafari.com</a><br>
-        Phone: +255 XXX XXX XXX
-      </p>
-      <div style="margin-top:10px; display:flex; gap:10px;">
-        <a href="https://facebook.com" target="_blank" style="color:#FFA94D; font-size:1.3rem;">&#xf09a;</a> <!-- Facebook -->
-        <a href="https://instagram.com" target="_blank" style="color:#FFA94D; font-size:1.3rem;">&#xf16d;</a> <!-- Instagram -->
-        <a href="https://twitter.com" target="_blank" style="color:#FFA94D; font-size:1.3rem;">&#xf099;</a> <!-- Twitter -->
+      <!-- About -->
+      <div>
+        <h3 style="margin-bottom:12px; color:#FFA94D;">About Lake Natron Safari</h3>
+        <p style="font-size:0.95em; line-height:1.5; color:#9aa7b2;">
+          Explore the unique landscapes, wildlife, and Maasai culture around Lake Natron with certified guides. Experience unforgettable safaris, responsible tourism, and community engagement.
+        </p>
       </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 style="margin-bottom:12px; color:#FFA94D;">Quick Links</h3>
+        <ul style="list-style:none; padding:0; font-size:0.95em; color:#9aa7b2;">
+          <li><a href="#wildlife" style="color:#9aa7b2; text-decoration:none;">Wildlife</a></li>
+          <li><a href="#birdlife" style="color:#9aa7b2; text-decoration:none;">Birdlife</a></li>
+          <li><a href="#culture" style="color:#9aa7b2; text-decoration:none;">Culture</a></li>
+          <li><a href="#contact" style="color:#9aa7b2; text-decoration:none;">Booking</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact & WhatsApp -->
+      <div>
+        <h3 style="margin-bottom:12px; color:#FFA94D;">Contact</h3>
+        <p style="font-size:0.95em; color:#9aa7b2;">
+          WhatsApp: <a href="https://wa.me/255XXXXXXXXX" target="_blank" style="color:#FFA94D; text-decoration:none;">+255 XXXXXXXX</a><br>
+          Email: <a href="mailto:info@lakenatronsafari.com" style="color:#FFA94D; text-decoration:none;">info@lakenatronsafari.com</a><br>
+          Phone: +255 XXX XXX XXX
+        </p>
+        <div style="margin-top:10px; display:flex; gap:10px;">
+          <a href="https://facebook.com" target="_blank" style="color:#FFA94D; font-size:1.3rem;">&#xf09a;</a> <!-- Facebook -->
+          <a href="https://instagram.com" target="_blank" style="color:#FFA94D; font-size:1.3rem;">&#xf16d;</a> <!-- Instagram -->
+          <a href="https://twitter.com" target="_blank" style="color:#FFA94D; font-size:1.3rem;">&#xf099;</a> <!-- Twitter -->
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <h3 style="margin-bottom:12px; color:#FFA94D;">Newsletter</h3>
+        <p style="font-size:0.95em; color:#9aa7b2;">Subscribe to receive updates on tours, wildlife sightings, and special offers.</p>
+        <form onsubmit="event.preventDefault(); alert('Subscribed (demo)');" style="display:flex; gap:6px; margin-top:10px;">
+          <input type="email" placeholder="Your email" required style="flex:1; padding:10px; border-radius:8px; border:none; outline:none;">
+          <button type="submit" style="padding:10px 14px; border-radius:8px; background:linear-gradient(90deg,#FF6B35,#FFA94D); border:none; color:#081017; cursor:pointer;">Subscribe</button>
+        </form>
+      </div>
+
     </div>
 
-    <!-- Newsletter -->
-    <div>
-      <h3 style="margin-bottom:12px; color:#FFA94D;">Newsletter</h3>
-      <p style="font-size:0.95em; color:#9aa7b2;">Subscribe to receive updates on tours, wildlife sightings, and special offers.</p>
-      <form onsubmit="event.preventDefault(); alert('Subscribed (demo)');" style="display:flex; gap:6px; margin-top:10px;">
-        <input type="email" placeholder="Your email" required style="flex:1; padding:10px; border-radius:8px; border:none; outline:none;">
-        <button type="submit" style="padding:10px 14px; border-radius:8px; background:linear-gradient(90deg,#FF6B35,#FFA94D); border:none; color:#081017; cursor:pointer;">Subscribe</button>
-      </form>
+    <div style="text-align:center; font-size:0.85em; color:#9aa7b2; margin-top:30px;">
+      &copy; 2025 Lake Natron Safari Guide. All rights reserved. | Designed by YourName
     </div>
+  </footer>
 
-  </div>
-
-  <div style="text-align:center; font-size:0.85em; color:#9aa7b2; margin-top:30px;">
-    &copy; 2025 Lake Natron Safari Guide. All rights reserved. | Designed by YourName
-  </div>
-</footer>
-
-
+  <!-- Scripts -->
   <script>
     // Hamburger menu JS
     const hamburgerBtn = document.getElementById('hamburgerBtn');
