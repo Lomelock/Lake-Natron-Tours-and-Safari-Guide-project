@@ -37,6 +37,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      transition: top 0.3s;
     }
     header .logo {
       font-family: 'Montserrat', Arial, sans-serif;
@@ -608,7 +609,7 @@
       <p class="accommodation-lead">
         Enjoy stunning views, modern amenities, and authentic hospitality. Our handpicked lodges and camps offer the perfect base for your safari adventure.
       </p>
-      <a class="accommodation-cta" href="accommodation.html">View Accommodation Options</a>
+      <a class="accommodation-cta" href="Accomodations.html">View Accommodation Options</a>
     </div>
   </section>
   <!-- Search Section -->
@@ -856,6 +857,21 @@
         closeMobileNav();
       }
     });
+
+    // Hide header on scroll up, show on scroll down
+    (function() {
+      let lastScroll = window.scrollY;
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', function() {
+        const current = window.scrollY;
+        if (current > lastScroll && current > 60) {
+          header.classList.add('hide-on-scroll');
+        } else {
+          header.classList.remove('hide-on-scroll');
+        }
+        lastScroll = current;
+      });
+    })();
   </script>
 </body>
 </html>

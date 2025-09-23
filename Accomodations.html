@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lake Natron Accommodations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #ff7a18;
+      --accent-2: #ffb347;
+      --bg: #0f1724;
+      --muted: #aab3c1;
+      --section-bg: #f8f8f8;
+      --section-dark-bg: #0c3b2e;
+    }
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--section-bg);
+      color: #222;
+    }
+    header {
+      background: var(--section-dark-bg);
+      color: #fff;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.7em;
+      font-weight: 700;
+      color: var(--accent-2);
+      letter-spacing: 1px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 12px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.08em;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--accent-2);
+    }
+    .hero-accommodation {
+      background: linear-gradient(120deg, #f8f8f8 60%, #e8e8e8 100%);
+      padding: 48px 20px 32px 20px;
+      text-align: center;
+    }
+    .hero-accommodation h1 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.3em;
+      color: var(--accent);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .hero-accommodation p {
+      font-size: 1.15em;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto 18px auto;
+      line-height: 1.6;
+    }
+    .hero-accommodation img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 18px;
+      margin: 28px auto 0 auto;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+      display: block;
+    }
+    .accommodation-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px 30px 20px;
+    }
+    .accommodation-section h2 {
+      text-align: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2em;
+      color: var(--accent);
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .accommodation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 28px;
+      margin-top: 24px;
+    }
+    .accommodation-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .accommodation-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+    }
+    .accommodation-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+    .accommodation-card-content {
+      padding: 20px 18px 18px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .accommodation-card h3 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.18em;
+      color: var(--accent);
+      margin: 0 0 10px 0;
+      font-weight: 700;
+    }
+    .accommodation-card p {
+      font-size: 1em;
+      color: #444;
+      margin: 0 0 12px 0;
+      line-height: 1.5;
+    }
+    .accommodation-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-bottom: 10px;
+    }
+    .accommodation-features span {
+      background: #f8f8f8;
+      color: var(--accent);
+      font-size: 0.93em;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: inline-block;
+    }
+    .accommodation-card .book-btn {
+      margin-top: auto;
+      align-self: flex-start;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      padding: 9px 22px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 1em;
+      transition: background 0.2s, color 0.2s;
+      border: none;
+      box-shadow: 0 2px 8px rgba(255,186,91,0.08);
+      cursor: pointer;
+    }
+    .accommodation-card .book-btn:hover {
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      color: #222;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .hero-accommodation h1 { font-size: 1.35em; }
+      .accommodation-section h2 { font-size: 1.15em; }
+      .accommodation-card img { height: 120px; }
+      .accommodation-card-content { padding: 14px 8px 12px 8px; }
+    }
+    @media (max-width: 500px) {
+      .hero-accommodation { padding: 24px 4vw 16px 4vw; }
+      .accommodation-section { padding: 24px 4vw 16px 4vw; }
+      .accommodation-card img { height: 90px; }
+    }
+    footer {
+      background: var(--bg);
+      color: #e8eef2;
+      padding: 32px 16px 18px 16px;
+      margin-top: 40px;
+      border-radius: 18px 18px 0 0;
+      text-align: center;
+      font-size: 0.97em;
+    }
+    footer a { color: var(--accent-2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .accommodation-slider { overflow: hidden; }
+    .slider-track { will-change: transform; width:100%; }
+    .slide { transition: opacity 0.3s; }
+    .slider-arrow { transition: background 0.2s; }
+    .slider-arrow:hover { background: var(--accent-2); color: #222; }
+    .slider-dots .dot {
+      width: 11px; height: 11px; border-radius: 50%;
+      background: #ddd; border: none; margin: 0 2px; cursor: pointer;
+      transition: background 0.2s;
+      outline: none;
+      display: inline-block;
+    }
+    .slider-dots .dot.active { background: var(--accent-2); }
+    @media (max-width: 700px) {
+      .accommodation-slider { max-width: 98vw; }
+      .slide-img { height: 120px !important; }
+    }
+    @media (max-width: 500px) {
+      .slide-img { height: 80px !important; }
+      .slider-arrow { width: 28px; height: 28px; font-size: 0.9em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Lake Natron Safaris</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#accommodations">Accommodations</a>
+      <a href="index.html#packages">Packages</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+  <section class="hero-accommodation">
+    <h1>Lake Natron Accommodations</h1>
+    <p>
+      Find your perfect stay at Lake Natron. From eco-friendly tented camps to comfortable lodges, enjoy stunning views, Maasai hospitality, and easy access to the lake’s wonders. All options are handpicked for comfort, authenticity, and a memorable safari experience.
+    </p>
+    <!-- Responsive Accommodation Image Slider -->
+    <div class="accommodation-slider" style="margin:32px auto 0 auto; max-width:540px; position:relative;">
+      <div class="slider-track" id="sliderTrack" style="display:flex; transition:transform 0.5s cubic-bezier(.77,0,.18,1); width:100%;">
+        <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+          <img src="summit lodge.png" alt="Lake Natron Camp" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Lake Natron Camp</div>
+        </div>
+        <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+          <img src="maasai graffe eco lodge.png" alt="Maasai Giraffe Eco Lodge" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Maasai Giraffe Eco Lodge</div>
+        </div>
+        <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+          <img src="Lengai Lodge.png" alt="Lengai Lodge Natron" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Engare Sero Lodge</div>
+        </div>
+        <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+          <img src="Eeaglenest Guest House.png" alt="Eaglenest Natron Guest House" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Eaglenest Natron Guest House</div>
+        </div>
+        <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+          <img src="Africa safari lodge natron.png" alt="Africa Safari Lodge Natron" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Africa Safari Lodge Natron</div>
+        </div>
+        <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+          <img src="World view campsite.png" alt="Worldview Camp" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Worldview Camp</div>
+        </div>
+      </div>
+      <button class="slider-arrow left" id="sliderPrev" aria-label="Previous" style="position:absolute;top:50%;left:0;transform:translateY(-50%);background:rgba(15,23,36,0.7);border:none;border-radius:50%;width:36px;height:36px;color:#fff;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;"><i class="fa fa-chevron-left"></i></button>
+      <button class="slider-arrow right" id="sliderNext" aria-label="Next" style="position:absolute;top:50%;right:0;transform:translateY(-50%);background:rgba(15,23,36,0.7);border:none;border-radius:50%;width:36px;height:36px;color:#fff;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;"><i class="fa fa-chevron-right"></i></button>
+      <div class="slider-dots" id="sliderDots" style="display:flex;justify-content:center;gap:8px;margin-top:10px;"></div>
+    </div>
+    <style>
+      .accommodation-slider { overflow: hidden; }
+      .slider-track { will-change: transform; width:100%; }
+      .slide { transition: opacity 0.3s; }
+      .slider-arrow { transition: background 0.2s; }
+      .slider-arrow:hover { background: var(--accent-2); color: #222; }
+      .slider-dots .dot {
+        width: 11px; height: 11px; border-radius: 50%;
+        background: #ddd; border: none; margin: 0 2px; cursor: pointer;
+        transition: background 0.2s;
+        outline: none;
+        display: inline-block;
+      }
+      .slider-dots .dot.active { background: var(--accent-2); }
+      @media (max-width: 700px) {
+        .accommodation-slider { max-width: 98vw; }
+        .slide-img { height: 120px !important; }
+      }
+      @media (max-width: 500px) {
+        .slide-img { height: 80px !important; }
+        .slider-arrow { width: 28px; height: 28px; font-size: 0.9em; }
+      }
+    </style>
+    <script>
+      // Responsive slider logic (one image per slide)
+      (function() {
+        const slides = document.querySelectorAll('.accommodation-slider .slide');
+        const track = document.getElementById('sliderTrack');
+        const prev = document.getElementById('sliderPrev');
+        const next = document.getElementById('sliderNext');
+        const dotsContainer = document.getElementById('sliderDots');
+        let current = 0;
+        const total = slides.length;
+        function updateSlider() {
+          const slideWidth = track.clientWidth;
+          track.style.transform = `translateX(-${current * slideWidth}px)`;
+          dotsContainer.querySelectorAll('.dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === current);
+          });
+        }
+        function goTo(idx) {
+          current = idx;
+          if (current < 0) current = total - 1;
+          if (current >= total) current = 0;
+          updateSlider();
+        }
+        // Dots
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < total; i++) {
+          const dot = document.createElement('button');
+          dot.className = 'dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', `Go to slide ${i+1}`);
+          dot.onclick = () => goTo(i);
+          dotsContainer.appendChild(dot);
+        }
+        prev.onclick = () => goTo(current - 1);
+        next.onclick = () => goTo(current + 1);
+        window.addEventListener('resize', updateSlider);
+        // Touch support
+        let startX = null;
+        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+        track.addEventListener('touchend', e => {
+          if (startX === null) return;
+          let dx = e.changedTouches[0].clientX - startX;
+          if (dx > 40) goTo(current - 1);
+          else if (dx < -40) goTo(current + 1);
+          startX = null;
+        });
+        // Initial
+        setTimeout(updateSlider, 100);
+      })();
+    </script>
+  </section>
+  <section class="accommodation-section" id="accommodations">
+    <h2>Where to Stay at Lake Natron</h2>
+    <div class="accommodation-grid">
+      <!-- Accommodation 1 -->
+      <div class="accommodation-card">
+        <img src="summit lodge.png" alt="Lake Natron Camp">
+        <div class="accommodation-card-content">
+          <h3>Lake Natron Camp</h3>
+          <div class="accommodation-features">
+            <span><i class="fa fa-bed"></i> Luxury Tents</span>
+            <span><i class="fa fa-wifi"></i> Free WiFi</span>
+            <span><i class="fa fa-water"></i> Natural Pool</span>
+            <span><i class="fa fa-mountain"></i> Ol Doinyo Lengai Views</span>
+          </div>
+          <p>
+            Set on the lake’s edge, this eco-camp offers stylish en-suite tents, a natural swimming pool, and breathtaking sunrise views. Enjoy guided walks, flamingo watching, and Maasai cultural experiences.
+          </p>
+          <a class="book-btn" href="mailto:info@lakenatronsafari.com?subject=Lake Natron Camp Booking">Book With Us</a>
+        </div>
+      </div>
+      
+      <!-- Accommodation 2 -->
+      <div class="accommodation-card">
+        <img src="maasai graffe eco lodge.png" alt="Maasai Giraffe Eco Lodge">
+        <div class="accommodation-card-content">
+          <h3>Maasai Giraffe Eco Lodge</h3>
+          <div class="accommodation-features">
+            <span><i class="fa fa-home"></i> Bungalows</span>
+            <span><i class="fa fa-leaf"></i> Eco-Friendly</span>
+            <span><i class="fa fa-users"></i> Maasai Guides</span>
+            <span><i class="fa fa-fire"></i> Campfire Evenings</span>
+          </div>
+          <p>
+            Stay in eco-bungalows or tents surrounded by nature. The lodge is Maasai-owned and offers cultural tours, local cuisine, and a warm, authentic atmosphere.
+          </p>
+          <a class="book-btn" href="mailto:info@lakenatronsafari.com?subject=Maasai Giraffe Eco Lodge Booking">Book Now</a>
+        </div>
+      </div>
+      <!-- Accommodation 4 -->
+      <div class="accommodation-card">
+        <img src="Lengai Lodge.png" alt="Engare Sero Lodge">
+        <div class="accommodation-card-content">
+          <h3>Lengai Lodge Natron</h3>
+          <div class="accommodation-features">
+            <span><i class="fa fa-bed"></i> Rooms</span>
+            <span><i class="fa fa-water"></i> Lake Access</span>
+            <span><i class="fa fa-binoculars"></i> Birdwatching</span>
+            <span><i class="fa fa-hiking"></i> Waterfall Hikes</span>
+          </div>
+          <p>
+            Located in the main village, this lodge offers simple rooms, friendly staff, and guided activities to the lake, waterfalls, and flamingo sites.
+          </p>
+          <a class="book-btn" href="mailto:info@lakenatronsafari.com?subject=Engare Sero Lodge Booking">Book With Us</a>
+        </div>
+      </div>
+      <!-- Accommodation 5 -->
+      <div class="accommodation-card">
+        <img src="Eeaglenest Guest House.png" alt="Eaglenest Natron Guest House">
+        <div class="accommodation-card-content">
+          <h3>Eaglenest Natron Guest House</h3>
+          <div class="accommodation-features">
+            <span><i class="fa fa-bed"></i> Guest Rooms</span>
+            <span><i class="fa fa-wifi"></i> Free WiFi</span>
+            <span><i class="fa fa-coffee"></i> Breakfast Included</span>
+            <span><i class="fa fa-map-marker-alt"></i> Village Location</span>
+          </div>
+          <p>
+            A friendly, budget-friendly guest house in Engare Sero village. Clean rooms, local meals, and helpful staff make it a great base for exploring the lake and waterfalls on a budget.
+          </p>
+          <a class="book-btn" href="mailto:info@lakenatronsafari.com?subject=Eaglenest Natron Guest House Booking">Book With Us</a>
+        </div>
+      </div>
+      <!-- Accommodation 6 -->
+      <div class="accommodation-card">
+        <img src="Africa safari lodge natron.png" alt="Africa Safari Lodge Natron">
+        <div class="accommodation-card-content">
+          <h3>Africa Safari Lodge Natron</h3>
+          <div class="accommodation-features">
+            <span><i class="fa fa-bed"></i> Safari Tents & Rooms</span>
+            <span><i class="fa fa-swimmer"></i> Swimming Pool</span>
+            <span><i class="fa fa-utensils"></i> Restaurant & Bar</span>
+            <span><i class="fa fa-sun"></i> Lake & Mountain Views</span>
+          </div>
+          <p>
+            Modern lodge with comfortable safari tents and rooms, a swimming pool, and a restaurant. Enjoy panoramic views, sundowners, and easy access to the lake and local attractions.
+          </p>
+          <a class="book-btn" href="mailto:info@lakenatronsafari.com?subject=Africa Safari Lodge Natron Booking">Book With Us</a>
+        </div>
+      </div>
+      <!-- Accommodation 7 -->
+      <div class="accommodation-card">
+        <img src="World view campsite.png" alt="Worldview Camp">
+        <div class="accommodation-card-content">
+          <h3>Worldview Camp</h3>
+          <div class="accommodation-features">
+            <span><i class="fa fa-campground"></i> Camping & Tents</span>
+            <span><i class="fa fa-fire"></i> Campfire Area</span>
+            <span><i class="fa fa-users"></i> Group Friendly</span>
+            <span><i class="fa fa-binoculars"></i> Birdwatching</span>
+          </div>
+          <p>
+            Affordable camping and tented accommodation with a relaxed atmosphere. Perfect for groups and adventure travelers, with communal campfires and guided excursions to the lake and surroundings.
+          </p>
+          <a class="book-btn" href="mailto:info@lakenatronsafari.com?subject=Worldview Camp Booking">Book With Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    &copy; 2025 Lake Natron Safari Guide. All rights reserved. | <a href="index.html">Back to Home</a>
+  </footer>
+</body>
+</html>
+</html>
