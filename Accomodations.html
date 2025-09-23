@@ -72,7 +72,7 @@
     }
     .hero-accommodation img {
       width: 100%;
-      max-width: 520px;
+      max-width: 700px;
       border-radius: 18px;
       margin: 28px auto 0 auto;
       box-shadow: 0 4px 24px rgba(0,0,0,0.09);
@@ -112,9 +112,11 @@
     }
     .accommodation-card img {
       width: 100%;
-      height: 180px;
+      height: 260px;
       object-fit: cover;
       border-bottom: 1px solid #eee;
+      border-radius: 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
     }
     .accommodation-card-content {
       padding: 20px 18px 18px 18px;
@@ -172,16 +174,25 @@
       color: #222;
     }
     /* Responsive */
+    @media (max-width: 900px) {
+      .hero-accommodation img,
+      .slide-img {
+        max-width: 98vw;
+        height: 200px !important;
+      }
+    }
     @media (max-width: 700px) {
-      .hero-accommodation h1 { font-size: 1.35em; }
-      .accommodation-section h2 { font-size: 1.15em; }
-      .accommodation-card img { height: 120px; }
-      .accommodation-card-content { padding: 14px 8px 12px 8px; }
+      .slide-img {
+        height: 140px !important;
+        max-width: 98vw;
+      }
     }
     @media (max-width: 500px) {
-      .hero-accommodation { padding: 24px 4vw 16px 4vw; }
-      .accommodation-section { padding: 24px 4vw 16px 4vw; }
-      .accommodation-card img { height: 90px; }
+      .slide-img {
+        height: 90px !important;
+        max-width: 99vw;
+      }
+      .slider-arrow { width: 28px; height: 28px; font-size: 0.9em; }
     }
     footer {
       background: var(--bg);
@@ -200,14 +211,14 @@
     .slider-arrow { transition: background 0.2s; }
     .slider-arrow:hover { background: var(--accent-2); color: #222; }
     .slider-dots .dot {
-      width: 11px; height: 11px; border-radius: 50%;
+      width: 13px; height: 13px; border-radius: 50%;
       background: #ddd; border: none; margin: 0 2px; cursor: pointer;
       transition: background 0.2s;
       outline: none;
       display: inline-block;
     }
     .slider-dots .dot.active { background: var(--accent-2); }
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
       .accommodation-slider { max-width: 98vw; }
       .slide-img { height: 120px !important; }
     }
@@ -215,11 +226,116 @@
       .slide-img { height: 80px !important; }
       .slider-arrow { width: 28px; height: 28px; font-size: 0.9em; }
     }
+    /* Hamburger menu styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: rgba(255,255,255,0.08);
+      border: none;
+      border-radius: 50%;
+      transition: background 0.2s;
+      z-index: 1101;
+    }
+    .hamburger:hover {
+      background: rgba(255,255,255,0.18);
+    }
+    .hamburger span {
+      height: 3px;
+      width: 24px;
+      background: #fff;
+      margin: 4px auto;
+      border-radius: 2px;
+      display: block;
+      transition: 0.3s;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+    @media (max-width: 900px) {
+      .hamburger {
+        display: flex !important;
+      }
+      header nav {
+        display: none;
+      }
+    }
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(20, 40, 30, 0.75);
+      z-index: 1100;
+      transition: opacity 0.3s;
+    }
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(12, 59, 46, 0.95);
+      backdrop-filter: blur(6px);
+      z-index: 1101;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, background 0.3s;
+    }
+    .mobile-nav.open {
+      opacity: 1;
+      pointer-events: auto;
+      background: transparent;
+    }
+    .mobile-nav a {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      color: #fff;
+      font-size: 1.4em;
+      margin: 18px 0;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover {
+      color: var(--accent-2);
+    }
+    .mobile-nav-close {
+      display: none;
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--accent-2);
+      font-size: 2.2em;
+      z-index: 1200;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .mobile-nav.open .mobile-nav-close {
+      display: block;
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">Lake Natron Safaris</div>
+    <!-- Hamburger icon for mobile -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" style="display:none;">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <nav>
       <a href="index.html">Home</a>
       <a href="#accommodations">Accommodations</a>
@@ -227,36 +343,45 @@
       <a href="index.html#contact">Contact</a>
     </nav>
   </header>
+  <!-- Mobile nav overlay and menu -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" style="display:none;"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="#accommodations">Accommodations</a>
+    <a href="index.html#packages">Packages</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
   <section class="hero-accommodation">
     <h1>Lake Natron Accommodations</h1>
     <p>
       Find your perfect stay at Lake Natron. From eco-friendly tented camps to comfortable lodges, enjoy stunning views, Maasai hospitality, and easy access to the lake’s wonders. All options are handpicked for comfort, authenticity, and a memorable safari experience.
     </p>
     <!-- Responsive Accommodation Image Slider -->
-    <div class="accommodation-slider" style="margin:32px auto 0 auto; max-width:540px; position:relative;">
+    <div class="accommodation-slider" style="margin:32px auto 0 auto; max-width:700px; position:relative;">
       <div class="slider-track" id="sliderTrack" style="display:flex; transition:transform 0.5s cubic-bezier(.77,0,.18,1); width:100%;">
         <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-          <img src="summit lodge.png" alt="Lake Natron Camp" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <img src="summit lodge.png" alt="Lake Natron Camp" class="slide-img">
           <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Lake Natron Camp</div>
         </div>
         <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-          <img src="maasai graffe eco lodge.png" alt="Maasai Giraffe Eco Lodge" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <img src="maasai graffe eco lodge.png" alt="Maasai Giraffe Eco Lodge" class="slide-img">
           <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Maasai Giraffe Eco Lodge</div>
         </div>
         <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-          <img src="Lengai Lodge.png" alt="Lengai Lodge Natron" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <img src="Lengai Lodge.png" alt="Lengai Lodge Natron" class="slide-img">
           <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Engare Sero Lodge</div>
         </div>
         <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-          <img src="Eeaglenest Guest House.png" alt="Eaglenest Natron Guest House" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <img src="Eeaglenest Guest House.png" alt="Eaglenest Natron Guest House" class="slide-img">
           <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Eaglenest Natron Guest House</div>
         </div>
         <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-          <img src="Africa safari lodge natron.png" alt="Africa Safari Lodge Natron" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <img src="Africa safari lodge natron.png" alt="Africa Safari Lodge Natron" class="slide-img">
           <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Africa Safari Lodge Natron</div>
         </div>
         <div class="slide" style="min-width:100%; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-          <img src="World view campsite.png" alt="Worldview Camp" class="slide-img" style="width:100%; max-width:540px; height:220px; object-fit:cover; border-radius:14px;">
+          <img src="World view campsite.png" alt="Worldview Camp" class="slide-img">
           <div class="slide-caption" style="margin-top:12px; font-family:'Montserrat',Arial,sans-serif; font-weight:700; color:var(--accent); font-size:1.08em;">Worldview Camp</div>
         </div>
       </div>
@@ -268,22 +393,42 @@
       .accommodation-slider { overflow: hidden; }
       .slider-track { will-change: transform; width:100%; }
       .slide { transition: opacity 0.3s; }
+      .slide-img {
+        width: 100%;
+        max-width: 700px;
+        height: 340px !important;
+        object-fit: cover;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+      }
       .slider-arrow { transition: background 0.2s; }
       .slider-arrow:hover { background: var(--accent-2); color: #222; }
       .slider-dots .dot {
-        width: 11px; height: 11px; border-radius: 50%;
+        width: 13px; height: 13px; border-radius: 50%;
         background: #ddd; border: none; margin: 0 2px; cursor: pointer;
         transition: background 0.2s;
         outline: none;
         display: inline-block;
       }
       .slider-dots .dot.active { background: var(--accent-2); }
+      @media (max-width: 900px) {
+        .hero-accommodation img,
+        .slide-img {
+          max-width: 98vw;
+          height: 200px !important;
+        }
+      }
       @media (max-width: 700px) {
-        .accommodation-slider { max-width: 98vw; }
-        .slide-img { height: 120px !important; }
+        .slide-img {
+          height: 140px !important;
+          max-width: 98vw;
+        }
       }
       @media (max-width: 500px) {
-        .slide-img { height: 80px !important; }
+        .slide-img {
+          height: 90px !important;
+          max-width: 99vw;
+        }
         .slider-arrow { width: 28px; height: 28px; font-size: 0.9em; }
       }
     </style>
@@ -448,6 +593,38 @@
   <footer>
     &copy; 2025 Lake Natron Safari Guide. All rights reserved. | <a href="index.html">Back to Home</a>
   </footer>
+  <script>
+    // Hamburger menu JS for mobile nav
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    const mobileNavClose = document.getElementById('mobileNavClose');
+    function closeMobileNav() {
+      hamburgerBtn.classList.remove('active');
+      mobileNav.classList.remove('open');
+      mobileNavOverlay.style.display = 'none';
+    }
+    hamburgerBtn.addEventListener('click', function() {
+      const isOpen = hamburgerBtn.classList.toggle('active');
+      if (isOpen) {
+        mobileNav.classList.add('open');
+        mobileNavOverlay.style.display = 'block';
+      } else {
+        closeMobileNav();
+      }
+    });
+    mobileNavOverlay.addEventListener('click', closeMobileNav);
+    mobileNavClose.addEventListener('click', closeMobileNav);
+    // Close menu on nav link click (mobile)
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileNav);
+    });
+    // Optional: close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (mobileNav.classList.contains('open') && (e.key === 'Escape' || e.key === 'Esc')) {
+        closeMobileNav();
+      }
+    });
+  </script>
 </body>
-</html>
 </html>
