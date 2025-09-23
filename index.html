@@ -52,6 +52,11 @@
       letter-spacing: 1px;
       color: var(--accent-2);
     }
+    header nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
     header nav a {
       font-family: 'Montserrat', Arial, sans-serif;
       font-weight: 700;
@@ -65,6 +70,11 @@
     header nav a:hover {
       color: var(--accent-2);
       text-decoration: underline;
+    }
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .social-icons a {
       color: white;
@@ -111,11 +121,22 @@
       transform: translateY(-7px) rotate(-45deg);
     }
     @media (max-width: 900px) {
+      header {
+        flex-wrap: nowrap;
+        padding: 10px 8px;
+      }
+      header .logo {
+        font-size: 1.3em;
+        margin-right: 0;
+      }
       .hamburger {
         display: flex;
-        margin-left: 10px;s
+        margin-left: 10px;
       }
       header nav {
+        display: none;
+      }
+      .social-icons {
         display: none;
       }
       header > .logo {
@@ -126,6 +147,14 @@
         display: flex;
         align-items: center;
         gap: 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      header {
+        padding: 8px 4px;
+      }
+      header .logo {
+        font-size: 1.05em;
       }
     }
     /* Mobile nav overlay */
@@ -540,51 +569,28 @@
       color: var(--accent-2);
       text-decoration: underline;
     }
-    /* Responsive adjustments for grid and sections */
     @media (max-width: 900px) {
-      header, footer {
+      footer {
+        padding: 32px 0 18px 0;
+        border-radius: 0;
         width: 100vw;
         left: 0;
         right: 0;
         margin: 0;
-        border-radius: 0;
         box-sizing: border-box;
       }
-      section, .accommodation-banner, .banner-slider {
-        max-width: 100vw;
-        border-radius: 0;
-      }
-      .accommodation-banner-content {
-        margin: 0 0 0 4vw;
-        padding: 18px 12px 18px 0;
-        min-height: 90px;
-      }
-      .accommodation-title {
-        font-size: 1.2em;
-      }
-      .accommodation-lead {
-        font-size: 1em;
+      footer > div[style*="max-width:1100px"] {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 0 10px;
       }
     }
     @media (max-width: 600px) {
-      header, footer {
-        width: 100vw;
-        left: 0;
-        right: 0;
-        margin: 0;
-        border-radius: 0;
-        box-sizing: border-box;
+      footer {
+        padding: 18px 0 10px 0;
       }
-      .accommodation-banner-content {
-        margin: 0 0 0 2vw;
-        padding: 10px 6px 10px 0;
-        min-height: 50px;
-      }
-      .accommodation-title {
-        font-size: 1em;
-      }
-      .accommodation-lead {
-        font-size: 0.95em;
+      footer > div[style*="max-width:1100px"] {
+        padding: 0 4px;
       }
     }
   </style>
